@@ -1,0 +1,35 @@
+# Text files — normalize line endings
+*.cs text eol=lf
+*.shader text eol=lf
+*.cginc text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.asmdef text eol=lf
+*.asmref text eol=lf
+*.uxml text eol=lf
+*.uss text eol=lf
+*.xml text eol=lf
+*.md text eol=lf
+
+# Unity assets — use Unity smart merge
+*.unity text merge=unityyamlmerge
+*.prefab text merge=unityyamlmerge
+*.asset text merge=unityyamlmerge
+*.controller text merge=unityyamlmerge
+*.anim text merge=unityyamlmerge
+*.mat text merge=unityyamlmerge
+*.mask text merge=unityyamlmerge
+*.meta text merge=unityyamlmerge
+
+# Binary files — treat as binary (no text merge)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.psd binary
+*.fbx binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.mp4 binary
+*.mov binary
+*.dll binary
