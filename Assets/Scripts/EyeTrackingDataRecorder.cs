@@ -17,13 +17,6 @@ public class EyeTrackingDataRecorder : MonoBehaviour
 
     void Start()
     {
-        if (eyeGaze == null)
-        {
-            Debug.LogError("EyeGaze reference is missing! Please assign OVREyeGaze in Inspector.");
-            enabled = false;
-            return;
-        }
-
         // Save to persistentDataPath (works in Editor and on Quest)
         string timeStamp = System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
         filePath = Path.Combine(Application.persistentDataPath, $"eye_tracking_data_{timeStamp}.csv");
@@ -37,13 +30,13 @@ public class EyeTrackingDataRecorder : MonoBehaviour
 
     void Update()
     {
-        if (eyeGaze == null || !eyeGaze.EyeTrackingEnabled) return;
+        if (eyeGaze == null) Debug.LogError("EyeGaze reference is missing!");
 
-        // Only log valid tracking data
-        if (eyeGaze.Confidence >= eyeGaze.ConfidenceThreshold)
+        // Use transform position/forward instead of GetRay()
+        if (eyeGaze.EyeTrackingEnabled && eyeGaze.Confidence > 0f)
         {
-            Vector3 origin = eyeGaze.GazeOrigin;
-            Vector3 direction = eyeGaze.GazeDirection;
+            Vector3 origin = eyeGaze.transform.position;
+            Vector3 direction = eyeGaze.transform.forward;
 
             string line = string.Format(
                 "{0:F4},{1:F4},{2:F4},{3:F4},{4:F4},{5:F4},{6:F4},{7:F2}",
@@ -55,6 +48,10 @@ public class EyeTrackingDataRecorder : MonoBehaviour
 
             writer.WriteLine(line);
         }
+
+        Debug.Log("EyeTrackingEnabled: " + eyeGaze.EyeTrackingEnabled);
+        Debug.Log("Confidence: " + eyeGaze.Confidence);
+
     }
 
     void OnApplicationQuit()
