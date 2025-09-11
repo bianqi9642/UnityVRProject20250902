@@ -383,6 +383,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6133266758803316988, guid: cd23c08f102314a87809b4abc54de9a4, type: 3}
+      propertyPath: repeatsPerLevel
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7474767178939741766, guid: cd23c08f102314a87809b4abc54de9a4, type: 3}
       propertyPath: m_Name
       value: TrialScheduler
@@ -571,6 +575,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 747887836850204133, guid: b6cf0618317e6421b825a1a8345393ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 2300311615945352253, guid: b6cf0618317e6421b825a1a8345393ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -270
@@ -706,7 +714,7 @@ PrefabInstance:
       objectReference: {fileID: 2080263705}
     - target: {fileID: 6757906500068158813, guid: 97d3b7bbdaf3a4201b32c408c7fff178, type: 3}
       propertyPath: participantID
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6757906500068158813, guid: 97d3b7bbdaf3a4201b32c408c7fff178, type: 3}
       propertyPath: trialScheduler
@@ -714,7 +722,7 @@ PrefabInstance:
       objectReference: {fileID: 2061012688}
     - target: {fileID: 6757906500068158813, guid: 97d3b7bbdaf3a4201b32c408c7fff178, type: 3}
       propertyPath: participantGroup
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6757906500068158813, guid: 97d3b7bbdaf3a4201b32c408c7fff178, type: 3}
       propertyPath: environmentManager
@@ -1658,7 +1666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4015128326712939851, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4015128326712939851, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1850,12 +1858,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4736824462062461832, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_Text
-      value: 'You are going to the stadium ahead to watch a football match. Please
-        choose which route you would like to take.
+      value: 'You are going to the stadium to watch a football match. At the crossroads
+        you don''t know which way to go. Use what you see to help you find your way.
 
 
-        Click Start to begin
-        the trial.'
+        Click
+        Start to begin the trial.'
       objectReference: {fileID: 0}
     - target: {fileID: 4950580794031056704, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4600,10 +4608,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 884617090004206586, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 1297571761438263309, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: dfe695eca68fd9243852d72c1a7c7f87, type: 2}
+    - target: {fileID: 1473101765144395099, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 1821428935326164923, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -4700,9 +4716,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8404268091690208151, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 8411232933076497156, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
       propertyPath: m_LocalScale.y
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411232933076497156, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8785984197147913677, guid: 750cd3ba76e854b9ca3f0c5c00bb0867, type: 3}
       propertyPath: m_Name
@@ -5891,7 +5915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1680501587, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_IsActive
