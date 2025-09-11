@@ -1378,6 +1378,7 @@ GameObject:
   - component: {fileID: 8730438057145801494}
   - component: {fileID: 400497886027627862}
   - component: {fileID: 2960414434438045089}
+  - component: {fileID: -5030395344610935117}
   m_Layer: 0
   m_Name: NPCinUse
   m_TagString: Untagged
@@ -1546,6 +1547,29 @@ MonoBehaviour:
   participantID: -1
   trialID: -1
   landmarkIsLeft: 0
+--- !u!136 &-5030395344610935117
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779934357743838442}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6906426392382772496
 GameObject:
   m_ObjectHideFlags: 0

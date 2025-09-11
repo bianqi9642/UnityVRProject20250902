@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public EnvironmentManager environmentManager;
     public NPCSpawner npcSpawner;
     public DataRecorder dataRecorder;
+    public EyeMovementRecorder eyeMovementRecorder; // <-- 新增引用（在 Inspector 指定）
 
     [Header("UI")]
     [Tooltip("Optional: UI manager that shows Intro/Choice/Rest/End panels. If assigned, UI triggers experiment Start.")]
@@ -109,6 +110,13 @@ public class GameManager : MonoBehaviour
             // Record trial settings
             if (dataRecorder != null)
                 dataRecorder.RecordTrialSettings(ts);
+
+            // 同步给 EyeMovementRecorder：保存并设置 activeTrial（如果已分配）
+            if (eyeMovementRecorder != null)
+            {
+                eyeMovementRecorder.RecordTrialSettings(ts);
+                eyeMovementRecorder.SetActiveTrial(ts);
+            }
 
             // 2) Configure NPCSpawner (pass per-path params)
             ConfigureSpawnerFromTrial(ts);
@@ -308,6 +316,10 @@ public class GameManager : MonoBehaviour
                 if (dataRecorder != null)
                     dataRecorder.RecordParticipantChoice(participantID, ts.trialID, "NoResponse", fallbackChoseTarget, respTime);
 
+                // Ensure EyeMovementRecorder clears active trial metadata
+                if (eyeMovementRecorder != null)
+                    eyeMovementRecorder.ClearActiveTrial();
+
                 // Ensure choice UI hidden
                 if (uiManager != null)
                     uiManager.HideChoicePanel();
@@ -454,6 +466,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("[GameManager] SubmitParticipantChoice: dataRecorder == null; choice not recorded.");
         }
+
+        // Ensure EyeMovementRecorder clears active trial metadata after choice is recorded
+        if (eyeMovementRecorder != null)
+            eyeMovementRecorder.ClearActiveTrial();
 
         if (uiManager != null)
         {
