@@ -318,8 +318,8 @@ public class TrialScheduler : MonoBehaviour
                         // Speed-study:
                         // - target.speed ALWAYS 1.4 (BASE_SPEED)
                         // - distractor.speed varies over speedLevels
-                        // - direction-consistency constant = 0.5 (per spec)
-                        float distractorProportion = 0.5f;
+                        // - direction-consistency constant = 0.75 (per spec)
+                        float distractorProportion = 0.75f;
                         float targetProportion = 1f - distractorProportion;
 
                         var split = ComputeSplit(BASE_TOTAL_N, targetProportion);

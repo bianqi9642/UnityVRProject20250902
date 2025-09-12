@@ -722,7 +722,7 @@ PrefabInstance:
       objectReference: {fileID: 2061012688}
     - target: {fileID: 6757906500068158813, guid: 97d3b7bbdaf3a4201b32c408c7fff178, type: 3}
       propertyPath: participantGroup
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6757906500068158813, guid: 97d3b7bbdaf3a4201b32c408c7fff178, type: 3}
       propertyPath: environmentManager
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   RightEyeGazeObject: {fileID: 1030847328}
   flushIntervalSeconds: 5
   recordEveryFrame: 1
-  downsampleEveryNFrames: 1
+  downsampleEveryNFrames: 5
   gazeLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295

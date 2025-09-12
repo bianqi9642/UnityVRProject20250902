@@ -96,6 +96,15 @@ public class NPCMoverOffset : MonoBehaviour
     public int trialID = -1;
     public bool landmarkIsLeft = false;
 
+    [Header("Animator (for passing movement speed)")]
+    // Animator reference used to set a float parameter representing current movement speed.
+    public Animator animator;
+    // Name of the Animator float parameter that controls playback speed / step frequency.
+    public string animatorSpeedParam = "MoveSpeed";
+    // Optionally smooth the speed value before sending to Animator to reduce jitter.
+    public bool smoothAnimatorSpeed = true;
+    public float speedSmoothTime = 0.08f; // smaller -> more responsive, larger -> smoother
+
     private NavMeshAgent agent;
     private enum State { ToCenter, ToRandomTarget, Stopped }
     private State currentState = State.ToCenter;
@@ -120,6 +129,10 @@ public class NPCMoverOffset : MonoBehaviour
 
     public bool isPlacedOnNavMesh { get; private set; } = false;
 
+    // Internal smoothing state for Animator speed
+    private float animatorSpeedValue = 0f;
+    private float animatorSpeedVelocity = 0f;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -130,6 +143,17 @@ public class NPCMoverOffset : MonoBehaviour
         }
 
         if (!agent.enabled) agent.enabled = true;
+
+        // Try to auto-assign Animator if none set in Inspector.
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+            if (animator == null)
+            {
+                // It's valid for prefab to not have Animator; we simply won't set parameters then.
+                // Debug.LogWarning("[NPCMoverOffset] Animator not assigned; will skip animator updates.");
+            }
+        }
 
         if ((renderersToChange == null || renderersToChange.Length == 0))
         {
@@ -192,6 +216,46 @@ public class NPCMoverOffset : MonoBehaviour
     {
         if (agent == null) return;
 
+        // -------------------------
+        // Animator speed update logic
+        // -------------------------
+        // We derive the "current movement speed" from the agent's velocity magnitude.
+        // This gives the true visual speed independent of the agent.speed property
+        // (which may be modulated by the uncertain routine). We optionally smooth the
+        // value before writing it to the Animator to avoid rapid jitter in animation playback.
+        if (animator != null && !string.IsNullOrEmpty(animatorSpeedParam))
+        {
+            float targetSpeed = 0f;
+
+            // If agent is on NavMesh and not stopped, use its velocity magnitude.
+            // If agent is stopped, explicitly send zero so animations can transition to idle.
+            if (agent.isOnNavMesh && !agent.isStopped)
+            {
+                // Use velocity magnitude as the most reliable indicator of actual movement.
+                targetSpeed = agent.velocity.magnitude;
+            }
+            else
+            {
+                targetSpeed = 0f;
+            }
+
+            if (smoothAnimatorSpeed)
+            {
+                // SmoothDamp produces a smoother animation parameter progression.
+                animatorSpeedValue = Mathf.SmoothDamp(animatorSpeedValue, targetSpeed, ref animatorSpeedVelocity, speedSmoothTime);
+            }
+            else
+            {
+                animatorSpeedValue = targetSpeed;
+            }
+
+            // Set the Animator parameter. Animator.SetFloat only affects the parameter and
+            // not the global Animator.timeScale; this is the recommended approach to control
+            // per-state playback multipliers via the state's "Speed" checkbox bound to this param.
+            animator.SetFloat(animatorSpeedParam, animatorSpeedValue);
+        }
+
+        // existing Update logic follows...
         if ((currentState == State.ToCenter || currentState == State.ToRandomTarget)
             && agent.isOnNavMesh && agent.isStopped)
         {

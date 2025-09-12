@@ -1527,8 +1527,8 @@ MonoBehaviour:
   minSegmentDistance: 3
   maxSegmentDistance: 5
   pauseProbability: 0.5
-  minPauseDuration: 0.5
-  maxPauseDuration: 2
+  minPauseDuration: 1
+  maxPauseDuration: 5
   slowSpeedFactorMin: 0.8
   slowSpeedFactorMax: 1
   backtrackChance: 0.18
@@ -1547,6 +1547,10 @@ MonoBehaviour:
   participantID: -1
   trialID: -1
   landmarkIsLeft: 0
+  animator: {fileID: 0}
+  animatorSpeedParam: MoveSpeed
+  smoothAnimatorSpeed: 1
+  speedSmoothTime: 0.08
 --- !u!136 &-5030395344610935117
 CapsuleCollider:
   m_ObjectHideFlags: 0
